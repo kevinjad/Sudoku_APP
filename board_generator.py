@@ -30,9 +30,10 @@ class board_generator:
 
     def make_board(self):
         self.search()
+        #print(self.board)
 
     def remove(self):
-        for k in range(0, random.randint(46,70)):
+        for k in range(0, 70):
             i = random.randint(0, 8)
             j = random.randint(0, 8)
             self.board[i][j] = 0
