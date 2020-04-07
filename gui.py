@@ -25,12 +25,22 @@ GREY = (195,191,191)
 YGREY = (206,195,96)
 DRED = (193,0,0)
 RED = (255,0,0)
+BLUE_CANV = (186,201,236)
 BLACK = (0,0,0)
 LBLACK = (63,63,68)
 LLBLACK = (82,81,97)
 LIGHT_BLUE = (96,216,232)
 GREEN = (0,255,0)
 grid_position = [75,100]
+sb_x = grid_position[0]
+sb_y = grid_position[1]-60
+sb_w = 60
+sb_h = 30
+nb_x = sb_x+sb_w+10
+nb_y = sb_y
+nb_w = 60
+nb_h = 30
+
 cell_size = 50
 grid_size = cell_size*9
 selected = None
@@ -102,14 +112,45 @@ while running:
             if(selected != None and user_input != None):
                 update_board()
 
-    screen.fill(YGREY)
+    screen.fill(BLUE_CANV)
     pygame.draw.rect(screen,LLBLACK,(grid_position[0],grid_position[1],450,450))
 
     #mouse updates
     mouse_position = pygame.mouse.get_pos()
-    
+    click = pygame.mouse.get_pressed()
     
     #Drawing
+    #button
+    pygame.draw.rect(screen,DRED,(sb_x,sb_y,sb_w,sb_h))
+    if(mouse_position[0] > sb_x and mouse_position[0] < sb_x+sb_w):
+        if(mouse_position[1] > sb_y and mouse_position[1] < sb_y+sb_h):
+            pygame.draw.rect(screen,RED,(sb_x,sb_y,sb_w,sb_h))
+            if(click[0] == 1):
+                selected = None
+                s.board = c.board
+    text = font.render("solve",True,WHITE)
+    screen.blit(text,(sb_x+5,sb_y))
+
+
+    pygame.draw.rect(screen,DRED,(nb_x,nb_y,nb_w,nb_h))
+    if(mouse_position[0] > nb_x and mouse_position[0] < nb_x+nb_w):
+        if(mouse_position[1] > nb_y and mouse_position[1] < nb_y+nb_h):
+            pygame.draw.rect(screen,RED,(nb_x,nb_y,nb_w,nb_h))
+            if(click[0] == 1):
+                selected = None
+                mat = obj.get_board()
+                ques_bool = [[False for x in range(9)] for y in range(9)]
+                for i in range(len(mat)):
+                    for j in range(len(mat[0])):
+                        if(mat[i][j] != 0):
+                            ques_bool[i][j] = True
+                s = sudoku.sudoku(mat)
+                c = copy.deepcopy(s)
+                c.solve()
+    text = font.render("New",True,WHITE)
+    screen.blit(text,(nb_x+5,nb_y))
+
+
     #selection draw
 
     if s.board == c.board: #checking for fucking win
