@@ -9,6 +9,7 @@ Press s to solve itself<br>
 It Polls everytime to check for a win<br>
 <br>
 <b>What does it look like?</b><br>
+<br>
   ![](sud_ed.PNG)
 
 
