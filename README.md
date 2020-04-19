@@ -7,3 +7,8 @@ Press s to solve itself<br>
 2.Backtracking Algorithm for solving<br>
 <br>
 It Polls everytime to check for a win<br>
+<br>
+<b>What does it look like?<\b>
+  ![]()
+
+
