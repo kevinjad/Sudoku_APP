@@ -2,7 +2,7 @@
 A Sudoku Application - Using Python(Pygame)<br>
 Press s to solve itself<br>
 
-#Algorithms Used
+#Algorithms Used<br>
 1.Naive Algorithm for generation of sudoku<br>
 2.Backtracking Algorithm for solving<br>
 <br>
